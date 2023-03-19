@@ -70,7 +70,7 @@ const favoritesWidget = new FavoritesWidget();
   ApiConnector.getFavorites((response) => {
     if(response.success === true) {
       favoritesWidget.clearTable();
-      favoritesWidget.fillTable(response, data);
+      favoritesWidget.fillTable(response.data);
       favoritesWidget.updateUsersList(response.data);
   }
 });  // Запросите начальный список избранного
