@@ -71,7 +71,7 @@ const favoritesWidget = new FavoritesWidget();
     if(response.success === true) {
       favoritesWidget.clearTable();
       favoritesWidget.fillTable(response.data);
-      favoritesWidget.updateUsersList(response.data);
+      moneyManager.updateUsersList(response.data);
   }
 });  // Запросите начальный список избранного
 
