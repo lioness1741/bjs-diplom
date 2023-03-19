@@ -20,7 +20,7 @@ const updatesRatesBoard = () => {
   ApiConnector.getStocks((response) => {
   if(response.success === true) {
     ratesBoard.clearTable();
-    ratesBoard.fillTable(response, data);
+    ratesBoard.fillTable(response.data);
   }
 });
 };    //Получение текущих курсов валюты
@@ -68,20 +68,20 @@ const favoritesWidget = new FavoritesWidget();
 // Работа с избранным
   
   ApiConnector.getFavorites((response) => {
-  if(response.success === true) {
-    favoritesWidget.clearTable();
-    favoritesWidget.fillTable(response, data);
-    favoritesWidget.updateUsersList(response, data);
+    if(response.success === true) {
+      favoritesWidget.clearTable();
+      favoritesWidget.fillTable(response, data);
+      favoritesWidget.updateUsersList(response.data);
   }
 });  // Запросите начальный список избранного
 
 favoritesWidget.addUserCallback = (data) => {
   ApiConnector.addUserToFavorites((data, response) => {
     if(response.success === true) {
-    favoritesWidget.clearTable();
-    favoritesWidget.fillTable(response, data);
-    favoritesWidget.updateUsersList(response, data);
-    favoritesWidget.setMessage(response.success, 'пользователь добавлен в список избранных успешно.');
+      favoritesWidget.clearTable();
+      favoritesWidget.fillTable(response.data);
+      favoritesWidget.updateUsersList(response.data);
+      favoritesWidget.setMessage(response.success, 'пользователь добавлен в список избранных успешно.');
     }  else {
        favoritesWidget.setMessage(response.success, response.error);      
   }
@@ -91,10 +91,10 @@ favoritesWidget.addUserCallback = (data) => {
 favoritesWidget.removeUserCallback = (data) => {
   ApiConnector.removeUserFromFavorites((data, response) => {
     if(response.success === true) {
-    favoritesWidget.clearTable();
-    favoritesWidget.fillTable(response, data);
-    favoritesWidget.updateUsersList(response, data);
-    favoritesWidget.setMessage(response.success, 'пользователь добавлен в список избранных успешно.');
+      favoritesWidget.clearTable();
+      favoritesWidget.fillTable(response.data);
+      favoritesWidget.updateUsersList(response.data);
+      favoritesWidget.setMessage(response.success, 'пользователь добавлен в список избранных успешно.');
     }  else {
        favoritesWidget.setMessage(response.success, response.error);      
   }
